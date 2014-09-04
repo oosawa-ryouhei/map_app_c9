@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Student name:</strong>
+  <%= @note.student_name %>
+</p>
+
+<p>
+  <strong>Student number:</strong>
+  <%= @note.student_number %>
+</p>
+
+<p>
+  <strong>Student grade:</strong>
+  <%= @note.student_grade %>
+</p>
+
+<p>
+  <strong>Student class:</strong>
+  <%= @note.student_class %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @note.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @note.body %>
+</p>
+
+<p>
+  <strong>Observed at:</strong>
+  <%= @note.observed_at %>
+</p>
+
+<p>
+  <strong>Event name:</strong>
+  <%= @note.event_name %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @note.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @note.longitude %>
+</p>
+
+<%= link_to 'Edit', edit_note_path(@note) %> |
+<%= link_to 'Back', notes_path %>
