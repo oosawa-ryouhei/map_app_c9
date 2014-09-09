@@ -1,5 +1,8 @@
 <%= form_for(@note) do |f| %>
   <% if @note.errors.any? %>
+  <div id="main">
+    <div id="map">マップ</div>
+
     <div id="error_explanation">
       <h2><%= pluralize(@note.errors.count, "error") %> prohibited this note from being saved:</h2>
 
@@ -12,8 +15,8 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :student_name %><br>
-    <%= f.text_field :student_name %>
+    <%= f.label :student_sasa %><br>
+    <%= f.text_field :student_sasa %>
   </div>
   <div class="field">
     <%= f.label :student_number %><br>
@@ -53,5 +56,6 @@
   </div>
   <div class="actions">
     <%= f.submit %>
+  </div>
   </div>
 <% end %>

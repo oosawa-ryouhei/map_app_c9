@@ -2,12 +2,56 @@
 <html>
 <head>
   <title>FieldNote</title>
+  <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  
+  <style>
+     #main {
+     	background-color: red;
+    	width: 1156px;
+       height: 500px;
+    }
+
+    #map {
+    	float: left;
+       width: 900px;
+       height: 500px;
+
+    }
+    #info {
+    	float: right;
+	  background-color: green;
+	  
+	  width: 256px;
+  	  height: 500px;
+
+	}
+    
+    
+    </style>
 </head>
 <body>
+<div id="main">
+	<div id="map">
+	    <script>
+	      var options={
+	         center: new google.maps.LatLng(40.9689298,141.3658779),
+	         zoom:14,
+	         mapTypeId:google.maps.MapTypeId.ROADMAP
+	    };
 
+	    var map=new google.maps.Map(
+	       document.getElementById('map'),
+	       options
+	    );
+		</script>
+		</div>
+		
+	<div id="info">情報</div>
+</div>
+	
 <%= yield %>
 
 </body>
