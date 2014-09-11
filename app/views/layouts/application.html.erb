@@ -16,16 +16,17 @@
 
     #map {
     	float: left;
-       width: 900px;
-       height: 500px;
+       width: 80%;
+       height: 100%;
 
     }
     #info {
     	float: right;
 	  background-color: green;
 	  
-	  width: 256px;
-  	  height: 500px;
+	  width: 20%;
+  	  height: 100
+  	  %;
 
 	}
     
@@ -34,20 +35,22 @@
 </head>
 <body>
 <div id="main">
-	<div id="map">
-	    <script>
-	      var options={
-	         center: new google.maps.LatLng(40.9689298,141.3658779),
-	         zoom:14,
-	         mapTypeId:google.maps.MapTypeId.ROADMAP
-	    };
+	
+		<div id="map">
+		    <script>
+		      var options={
+		         center: new google.maps.LatLng(40.9689298,141.3658779),
+		         zoom:14,
+		         mapTypeId:google.maps.MapTypeId.ROADMAP
+		    };
 
-	    var map=new google.maps.Map(
-	       document.getElementById('map'),
-	       options
-	    );
-		</script>
+		    var map=new google.maps.Map(
+		       document.getElementById('map'),
+		       options
+		    );
+			</script>
 		</div>
+
 		
 	<div id="info">情報</div>
 </div>

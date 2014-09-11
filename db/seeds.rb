@@ -6,16 +6,33 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-notes = Note.create([{
-			student_name: '神大樹',
-			student_number: 2,
-			student_grade: 4,
-			student_class: 1,
-			title: 'かじゃ',
-			body: 'こあ',
-			observed_at: '2012-08-28',
-			weather: '晴れ',
-			event_name: '尾駮沼観察',
-			latitude: +Random.rand(0.01)-0.005 ,
-			longitude: +Random.rand(0.01)-0.005,
-}])
+require 'csv'
+
+# db/csvフォルダ中のデータファイル
+data_files = %w(24.csv 25.csv)
+
+data_files.each do |data_file|
+  # 1行目はヘッダーなので無視
+  CSV.foreach('db/csv/' + data_file, headers: :first_row) do |row|
+    # ファイル名から年を抽出
+    heisei_year = data_file.sub(/(.*)\.csv/, '\1')
+    # X年X月をXXXX-XX-XX形式に
+    row[5].match(/([0-9]+)月([0-9]+)日/)
+    observed_at = sprintf("%04d-%02d-%02d", heisei_year.to_i + 1989, $1, $2)
+
+    Note.create(
+      student_name: row[3],
+      student_number: row[2],
+      student_grade: row[0],
+      student_class: row[1],
+      event_name: "平成#{heisei_year}年度尾駁沼観察",
+      title: row[9],
+      body: "#{row[10]}#{row[11]}",
+      image_file_name: "#{heisei_year}/#{row[4]}",
+      observed_at: observed_at,
+      weather: row[6],
+      latitude: 40.965499 + Random.rand(0.01) - 0.005,
+      longitude: 141.356479 + Random.rand(0.01) - 0.005
+    )
+  end
+end

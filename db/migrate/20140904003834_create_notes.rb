@@ -7,7 +7,9 @@ class CreateNotes < ActiveRecord::Migration
       t.integer :student_class
       t.string :title
       t.text :body
+      t.string :image_file_name
       t.datetime :observed_at
+      t.string :weather
       t.string :event_name
       t.float :latitude
       t.float :longitude

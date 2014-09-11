@@ -15,8 +15,8 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :student_sasa %><br>
-    <%= f.text_field :student_sasa %>
+    <%= f.label :student_name %><br>
+    <%= f.text_field :student_name %>
   </div>
   <div class="field">
     <%= f.label :student_number %><br>
@@ -39,10 +39,19 @@
     <%= f.text_area :body %>
   </div>
   <div class="field">
+    <%= f.label:image_file_name %><br>
+    <%= f.text_field:image_file_name %>
+    </div>
+    <div calss="field">
+
     <%= f.label :observed_at %><br>
     <%= f.datetime_select :observed_at %>
   </div>
   <div class="field">
+    <%= f.label:weather %><br>
+    <%= f.text_field: weather %>
+    </div>
+    <div class="field">
     <%= f.label :event_name %><br>
     <%= f.text_field :event_name %>
   </div>
