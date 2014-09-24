@@ -6,6 +6,9 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <script src="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.js"></script>
+
+
   
   <style>
      #main {
@@ -25,8 +28,7 @@
 	  background-color: green;
 	  
 	  width: 20%;
-  	  height: 100
-  	  %;
+  	  height: 100%;
 
 	}
     
@@ -34,26 +36,6 @@
     </style>
 </head>
 <body>
-<div id="main">
-	
-		<div id="map">
-		    <script>
-		      var options={
-		         center: new google.maps.LatLng(40.9689298,141.3658779),
-		         zoom:14,
-		         mapTypeId:google.maps.MapTypeId.ROADMAP
-		    };
-
-		    var map=new google.maps.Map(
-		       document.getElementById('map'),
-		       options
-		    );
-			</script>
-		</div>
-
-		
-	<div id="info">情報</div>
-</div>
 	
 <%= yield %>
 

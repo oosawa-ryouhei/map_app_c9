@@ -1,0 +1,15 @@
+<% provide :title, "場所の一覧" %>
+
+<% if @places.present? %>
+  <ul data-role="listview" data-inset="true">
+  <% @places.each do |place| %>
+    <li><%= link_to place.name, place %></li>
+  <% end %>
+  </ul>
+  <% else %>
+  <p>登録された場所はありません。</p>
+<% end %>
+
+<% if edit_mode? %>
+<%= link_to_btn '新しい場所の作成', new_place_path %>
+<% end %>

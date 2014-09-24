@@ -1,0 +1,59 @@
+<% provide :title, "場所の編集" %>
+
+<%= form_for(@place) do |f| %>
+  <fieldset data-role="controlgroup">
+  <% if @place.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@place.errors.count, "error") %> prohibited this place from being saved:</h2>
+
+      <ul>
+      <% @place.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div data-role="fieldcontain">
+    <%= f.label :name, "名前" %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div data-role="fieldcontain">
+    <%= f.label :description, "説明" %><br>
+    <%= f.text_area :description %>
+  </div>
+
+  <%= f.fields_for :image do |imgf| %>
+    <% if !imgf.object.new_record? && imgf.object.errors.empty? && @place.image.data != nil %>
+      <div>
+        現在の画像
+        <%= place_image_tag @place, style: "max-width: 320px; width: 100%; vertical-align: top;" %>
+      </div>
+      <div>
+        <%= imgf.check_box :_destroy %><%= imgf.label :_destroy, "現在の画像を削除する" %>
+        <%= imgf.hidden_field :id %>
+      </div>
+    <% end %>
+  <div data-role="fieldcontain">
+    <%= imgf.label :uploaded_image, "別な画像に入れ替える" %>
+    <%= imgf.file_field :uploaded_image %>
+  </div>
+  <% end %>
+
+  <div data-role="fieldcontain">
+    <%= f.label :lat, "緯度" %><br>
+    <%= f.text_field :lat %>
+  </div>
+  <div data-role="fieldcontain">
+    <%= f.label :lng, "経度" %><br>
+    <%= f.text_field :lng %>
+  </div>
+  <div class="actions">
+    <%= f.submit "更新", data: { theme: 'b' } %>
+  </div>
+  <br>
+  <div class="actions">
+    <%= link_to "削除", @place, { method: :delete, data: { confirm: '本当に削除しますか' }, class: 'ui-btn ui-btn-c' } %>
+  </div>
+  </fieldset>
+<% end %>

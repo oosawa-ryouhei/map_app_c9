@@ -1,3 +1,42 @@
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<div id="main">
+    <div id="map">
+        <script>
+          var options={
+             center: new google.maps.LatLng(40.9689298,141.3658779),
+             zoom:14,
+             mapTypeId:google.maps.MapTypeId.ROADMAP
+        };
+
+        var map=new google.maps.Map(
+           document.getElementById('map'),
+           options
+        );
+
+      </script>
+    </div>
+    
+      <script>
+        var Mapramble = {};
+          Mapramble.mode = 'edit';
+          //Mapramble.mode = 'viewer';
+          Mapramble.places = [];
+          <% if @notes.present? %>
+            <% @notes.each do |note| %>
+              Mapramble.places.push({lat: <%= note.latitude %>, lng: <%= note.longitude %>, id: <%= note.id %> });
+            <% end %>
+          <% end %>
+          Mapramble.bounds = new google.maps.LatLngBounds(
+              new google.maps.LatLng(40.614017, 140.485517),
+              new google.maps.LatLng(40.838241, 140.823699)
+          );
+          
+      </script>
+        <script src="/javascript/mapRamble.js"></script>
+    
+    
+  <div id="info">情報</div>
+</div>
 <h1>Listing notes</h1>
 
 <table>
