@@ -90,7 +90,7 @@ Mapramble.setEventHandler = function () {
 
     if (this.mode === 'edit') {
         google.maps.event.addListener(this.map, 'click', function (event) {
-            $.mobile.changePage('/places/new?lat=' + event.latLng.lat() + '&lng=' + event.latLng.lng());
+            $.mobile.changePage('/notes/new?lat=' + event.latLng.lat() + '&lng=' + event.latLng.lng());
         });        
     }
 };
@@ -106,7 +106,7 @@ Mapramble.fitBounds = function () {
 $(document).ready(function () {
     'use strict';
     Mapramble.setHeight();
-    Mapramble.map = Mapramble.createMap({zoom: 14, lat: 40.784056, lng: 140.781172});
+    Mapramble.map = Mapramble.createMap({zoom: 14, lat: 40.960462, lng: 141.357920});
     Mapramble.addPlaceMarkers();
     Mapramble.fitBounds();
     Mapramble.setEventHandler();

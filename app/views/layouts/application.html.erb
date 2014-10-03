@@ -6,29 +6,37 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  <script src="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.js"></script>
+
+
 
 
   
   <style>
      #main {
      	background-color: red;
-    	width: 1156px;
-       height: 500px;
+    	width: 1325px;
+        height: 480px;
     }
 
     #map {
     	float: left;
-       width: 80%;
+       width: 70%;
        height: 100%;
 
     }
     #info {
+    	overflow: auto;
     	float: right;
-	  background-color: green;
+	  background-color: rgb(255,255,255);
 	  
-	  width: 20%;
+	  width: 30%;
   	  height: 100%;
+	}
+	#list {
+		
+		overflow-x: scroll;overflow-y: hidden; 
+		width: 1325px;
+		height: 130px;
 
 	}
     

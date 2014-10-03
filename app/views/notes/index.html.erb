@@ -18,69 +18,114 @@
     
       <script>
         var Mapramble = {};
-          Mapramble.mode = 'edit';
-          //Mapramble.mode = 'viewer';
+          //Mapramble.mode = 'edit';
+          if (Mapramble.mode === true){
+            Mapramble.mode='edit';
+          }
+          else{
+            Mapramble.mode='viewer';           
+          }
+
+
           Mapramble.places = [];
           <% if @notes.present? %>
             <% @notes.each do |note| %>
               Mapramble.places.push({lat: <%= note.latitude %>, lng: <%= note.longitude %>, id: <%= note.id %> });
             <% end %>
           <% end %>
-          Mapramble.bounds = new google.maps.LatLngBounds(
-              new google.maps.LatLng(40.614017, 140.485517),
-              new google.maps.LatLng(40.838241, 140.823699)
-          );
+          //Mapramble.bounds = new google.maps.LatLngBounds(
+          //     new google.maps.LatLng(40.614017, 140.485517),
+          //     new google.maps.LatLng(40.838241, 140.823699)
+          // );
           
       </script>
         <script src="/javascript/mapRamble.js"></script>
     
     
-  <div id="info">情報</div>
+  <div id="info">
+    <h1>まとめノート</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>名前</th>
+          <th>出席番号</th>
+          <th>学年</th>
+          <th>クラス</th>
+          <th>タイトル</th>
+          <th>本文</th>
+          <th>画像</th>
+          <th>日時</th>
+          <th>天気</th>
+          <th>イベント名</th>
+          <th>緯度</th>
+          <th>経度</th>
+
+          <!-- <th>名前Student name</th>
+          <th>出席番号Student number</th>
+          <th>学年Student grade</th>
+          <th>クラスStudent class</th>
+          <th>タイトルTitle</th>
+          <th>本文Body</th>
+          <th>画像Image File Name</th>
+          <th>Observed at</th>
+          <th>天気Weather</th>
+          <th>イベント名Event name</th>
+          <th>緯度Latitude</th>
+          <th>経度Longitude</th>
+          <th colspan="3"></th> -->
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @notes.each do |note| %>
+          <tr>
+     
+            <td><%= note.student_name %></td>
+            <td><%= note.student_number %></td>
+            <td><%= note.student_grade %></td>
+            <td><%= note.student_class %></td>
+            <td><%= note.title %></td>
+            <td><%= note.body %></td>
+            <td><%= note.image_file_name %></td>
+            <td><%= note.observed_at %></td>
+            <td><%= note.weather %></td>
+            <td><%= note.event_name %></td>
+            <td><%= note.latitude %></td>
+            <td><%= note.longitude %></td>
+            <td><%= link_to 'Show', note %></td>
+            <td><%= link_to 'Edit', edit_note_path(note) %></td>
+            <td><%= link_to 'Destroy', note, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  
 </div>
-<h1>Listing notes</h1>
-
+<div id="list">
 <table>
-  <thead>
-    <tr>
-      <th>Student name</th>
-      <th>Student number</th>
-      <th>Student grade</th>
-      <th>Student class</th>
-      <th>Title</th>
-      <th>Body</th>
-      <th>Image File Name</th>
-      <th>Observed at</th>
-      <th>Weather</th>
-      <th>Event name</th>
-      <th>Latitude</th>
-      <th>Longitude</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @notes.each do |note| %>
-      <tr>
-        <td><%= note.student_name %></td>
-        <td><%= note.student_number %></td>
-        <td><%= note.student_grade %></td>
-        <td><%= note.student_class %></td>
-        <td><%= note.title %></td>
-        <td><%= note.body %></td>
-        <td><%= note.image_file_name %></td>
-        <td><%= note.observed_at %></td>
-        <td><%= note.weather %></td>
-        <td><%= note.event_name %></td>
-        <td><%= note.latitude %></td>
-        <td><%= note.longitude %></td>
-        <td><%= link_to 'Show', note %></td>
-        <td><%= link_to 'Edit', edit_note_path(note) %></td>
-        <td><%= link_to 'Destroy', note, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <img alt="4 1 03" src="/assets/24/4-1-03.jpg" width="140px" height="120px"/>
+    <img alt="4 1 04" src="/assets/24/4-1-04.jpg" width="140px" height="120px"/>  
+    <img alt="4 1 05" src="/assets/24/4-1-05.jpg" width="140px" height="120px"/>
+    <img alt="4 1 06" src="/assets/24/4-1-06.jpg" width="140px" height="120px"/>  
+    <img alt="4 1 07" src="/assets/24/4-1-07.jpg" width="140px" height="120px"/>
+    <img alt="4 1 08" src="/assets/24/4-1-08.jpg" width="140px" height="120px"/>
+    <img alt="4 1 09" src="/assets/24/4-1-09.jpg" width="140px" height="120px"/>
+    <img alt="4 1 10" src="/assets/24/4-1-10.jpg" width="140px" height="120px"/>  
+    <img alt="4 1 11" src="/assets/24/4-1-11.jpg" width="140px" height="120px"/>
+    <img alt="4 1 12" src="/assets/24/4-1-12.jpg" width="140px" height="120px"/>
+    <img alt="4 1 13" src="/assets/24/4-1-13.jpg" width="140px" height="120px"/>
+    <img alt="4 1 14" src="/assets/24/4-1-14.jpg" width="140px" height="120px"/>
+    <img alt="4 1 15" src="/assets/24/4-1-15.jpg" width="140px" height="120px"/>
+    <img alt="4 1 16" src="/assets/24/4-1-16.jpg" width="140px" height="120px"/>
+    <img alt="4 1 17" src="/assets/24/4-1-17.jpg" width="140px" height="120px"/>
+    <img alt="4 1 18" src="/assets/24/4-1-18.jpg" width="140px" height="120px"/>
+
+    </table>
+  </div>
+
 
 <br>
 
-<%= link_to 'New Note', new_note_path %>
