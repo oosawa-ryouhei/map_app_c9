@@ -6,6 +6,12 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <script type="text/javascript" src="jquery.carouFredSel-6.2.1-packed.js"></script>
+  <script type="text/javascript">
+	$(function(){
+		$("#thumbNails").carouFredSel();
+	});
+</script>
 
 
 
@@ -34,11 +40,20 @@
 	}
 	#list {
 		
-		overflow-x: scroll;overflow-y: hidden; 
+/*		overflow-x: scroll;
+		overflow-y: hidden; */
 		width: 1325px;
 		height: 130px;
 
 	}
+	.thumb-wrapper {
+    margin:20px;
+    padding: 10px;
+    background-color:#ddd;
+    width:1325px;
+    height: 130px;
+    overflow:hidden;
+    }
     
     
     </style>

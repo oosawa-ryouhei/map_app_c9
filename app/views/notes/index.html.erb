@@ -47,31 +47,33 @@
     <table>
       <thead>
         <tr>
-          <th>名前</th>
+ <!--          <th>名前</th>
           <th>出席番号</th>
           <th>学年</th>
-          <th>クラス</th>
+          <th>クラス</th> -->
           <th>タイトル</th>
           <th>本文</th>
           <th>画像</th>
-          <th>日時</th>
+          <!-- <th>日時</th>
           <th>天気</th>
           <th>イベント名</th>
-          <th>緯度</th>
-          <th>経度</th>
+          <th>緯度<th>
+          <th>経度</th>-->
+          <th colspan="3"></th>
 
-          <!-- <th>名前Student name</th>
-          <th>出席番号Student number</th>
-          <th>学年Student grade</th>
-          <th>クラスStudent class</th>
-          <th>タイトルTitle</th>
-          <th>本文Body</th>
-          <th>画像Image File Name</th>
+          <!--    英語版>
+          <!-- <th>Student name</th>
+          <th>Student number</th>
+          <th>Student grade</th>
+          <th>Student class</th>
+          <th>Title</th>
+          <th>Body</th>
+          <th>Image File Name</th>
           <th>Observed at</th>
-          <th>天気Weather</th>
-          <th>イベント名Event name</th>
-          <th>緯度Latitude</th>
-          <th>経度Longitude</th>
+          <th>Weather</th>
+          <th>Event name</th>
+          <th>Latitude</th>
+          <th>Longitude</th>
           <th colspan="3"></th> -->
         </tr>
       </thead>
@@ -80,18 +82,18 @@
         <% @notes.each do |note| %>
           <tr>
      
-            <td><%= note.student_name %></td>
+<!--             <td><%= note.student_name %></td>
             <td><%= note.student_number %></td>
             <td><%= note.student_grade %></td>
-            <td><%= note.student_class %></td>
+            <td><%= note.student_class %></td> -->
             <td><%= note.title %></td>
             <td><%= note.body %></td>
             <td><%= note.image_file_name %></td>
-            <td><%= note.observed_at %></td>
+            <!-- <td><%= note.observed_at %></td>
             <td><%= note.weather %></td>
             <td><%= note.event_name %></td>
             <td><%= note.latitude %></td>
-            <td><%= note.longitude %></td>
+            <td><%= note.longitude %></td> -->
             <td><%= link_to 'Show', note %></td>
             <td><%= link_to 'Edit', edit_note_path(note) %></td>
             <td><%= link_to 'Destroy', note, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -99,13 +101,17 @@
         <% end %>
       </tbody>
     </table>
+    
   </div>
 
   
 </div>
 <div id="list">
-<table>
-
+      <div class="thumb-wrapper">
+    <div id="thumbNails">
+    
+    
+<p>
     <img alt="4 1 03" src="/assets/24/4-1-03.jpg" width="140px" height="120px"/>
     <img alt="4 1 04" src="/assets/24/4-1-04.jpg" width="140px" height="120px"/>  
     <img alt="4 1 05" src="/assets/24/4-1-05.jpg" width="140px" height="120px"/>
@@ -122,8 +128,9 @@
     <img alt="4 1 16" src="/assets/24/4-1-16.jpg" width="140px" height="120px"/>
     <img alt="4 1 17" src="/assets/24/4-1-17.jpg" width="140px" height="120px"/>
     <img alt="4 1 18" src="/assets/24/4-1-18.jpg" width="140px" height="120px"/>
-
-    </table>
+</p>
+</div>
+    </div>
   </div>
 
 
