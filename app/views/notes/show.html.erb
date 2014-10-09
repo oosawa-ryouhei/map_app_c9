@@ -1,64 +1,64 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Student name:</strong>
+  <strong>児童名:</strong>
   <%= @note.student_name %>
 </p>
 
 <p>
-  <strong>Student number:</strong>
+  <strong>出席番号:</strong>
   <%= @note.student_number %>
 </p>
 
 <p>
-  <strong>Student grade:</strong>
+  <strong>学年:</strong>
   <%= @note.student_grade %>
 </p>
 
 <p>
-  <strong>Student class:</strong>
+  <strong>クラス:</strong>
   <%= @note.student_class %>
 </p>
 
 <p>
-  <strong>Title:</strong>
+  <strong>タイトル:</strong>
   <%= @note.title %>
 </p>
 
 <p>
-  <strong>Body:</strong>
+  <strong>本文:</strong>
   <%= @note.body %>
 </p>
 
 <p>
-  <strong>Image file:</strong>
+  <strong>画像:</strong>
   <%= image_tag@note.image_file_name %>
 </p>
 
 <p>
-  <strong>Observed at:</strong>
+  <strong>日時:</strong>
   <%= @note.observed_at %>
 </p>
 
 <p>
-  <strong>Weather:</strong>
+  <strong>天気:</strong>
   <%= @note.weather %>
 </p>
 
 <p>
-  <strong>Event name:</strong>
+  <strong>イベント名:</strong>
   <%= @note.event_name %>
 </p>
 
 <p>
-  <strong>Latitude:</strong>
+  <strong>緯度:</strong>
   <%= @note.latitude %>
 </p>
 
 <p>
-  <strong>Longitude:</strong>
+  <strong>経度:</strong>
   <%= @note.longitude %>
 </p>
 
-<%= link_to 'Edit', edit_note_path(@note) %> |
-<%= link_to 'Back', notes_path %>
+<%= link_to '編集', edit_note_path(@note) %> |
+<%= link_to '戻る', notes_path %>

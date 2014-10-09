@@ -58,7 +58,8 @@ Mapramble.addMarker = function (place) {
             	window.location.href = href.substring(0, href.legth - pathname.length) + '/notes/' + id + '/edit';
                 // $.mobile.changePage('/places/' + id + '/edit');
             } else {
-            	window.location.href = href.substring(0, href.legth - pathname.length) + '/notes/' + id;
+                document.write();
+            	//window.location.href = href.substring(0, href.legth - pathname.length) + '/notes/' + id;
                 // $.mobile.changePage('/places/' + id);
             }
         }(place.id));
