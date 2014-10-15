@@ -1,0 +1,9 @@
+<h1>モードの変更</h1>
+<p id="notice"><%= notice %></p>
+<%= form_for(@mode) do |f| %>
+<%= f.radio_button :name, 'view', {checked: (@mode.name == "view")} %>
+<%= f.label :name, "閲覧モード", value: "view" %><br>
+<%= f.radio_button :name, 'edit', {checked: (@mode.name == "edit")} %>
+<%= f.label :name, "編集モード", value: "edit" %><br>
+<%= f.submit "モードの変更" %>
+<% end %>

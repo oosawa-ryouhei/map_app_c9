@@ -37,3 +37,5 @@ data_files.each do |data_file|
     )
   end
 end
+
+mode = Mode.create({name: 'view'})
