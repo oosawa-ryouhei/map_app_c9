@@ -1,70 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
-  <title>FieldNote</title>
+	<meta charset="UTF-8">
+  <title>尾駮沼観察</title>
   <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-  <script type="text/javascript" src="markerclusterer_compiled.js"></script>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-
-
-  <script type="text/javascript" src="../../../css_js/jquery-1.9.1.min.js"></script>
-  <script type="text/javascript" src="jquery.carouFredSel-6.2.1-packed.js"></script>
-  <script>
-	$(function(){
-		$("#thumbNails").carouFredSel();
-	});
-</script>
-
-
-
-
-  
-  <style>
-     #main {
-     	background-color: red;
-    	width: 1325px;
-        height: 480px;
-    }
-
-    #map {
-    	float: left;
-       width: 70%;
-       height: 100%;
-
-    }
-    #info {
-    	overflow: auto;
-    	float: right;
-	  background-color: rgb(255,255,255);
-	  
-	  width: 30%;
-  	  height: 100%;
-	}
-	/*#list {
-		
-		overflow-x: scroll;
-		overflow-y: hidden; 
-		width: 1325px;
-		height: 130px;
-
-	}*/
-	.list {
-/*    margin:20px;*/
-/*    padding: 10px;*/
-    background-color:#ddd;
-    width:1320px;
-    height: 130px;
-    overflow:hidden;
-    }
-    
-    
-    </style>
 </head>
 <body>
-	
+<div id="header">
+  <h1>尾駮沼観察</h1>
+  <p><%= link_to "先生用メニュー", modes_path %></p>
+</div>
 <%= yield %>
-
+<div id="footer">
+</div>
 </body>
 </html>

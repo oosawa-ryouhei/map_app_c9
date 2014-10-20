@@ -5,6 +5,10 @@ class NotesController < ApplicationController
   # GET /notes.json
   def index
     @notes = Note.all
+    @lat_max = Note.maximum(:lat)
+    @lat_min = Note.minimum(:lat)
+    @lng_max = Note.maximum(:lng)
+    @lng_min = Note.minimum(:lng)
   end
 
   # GET /notes/1

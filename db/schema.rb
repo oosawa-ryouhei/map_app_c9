@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141015112547) do
+ActiveRecord::Schema.define(version: 20141020042407) do
 
   create_table "modes", force: true do |t|
     t.string   "name"
@@ -30,8 +30,8 @@ ActiveRecord::Schema.define(version: 20141015112547) do
     t.datetime "observed_at"
     t.string   "weather"
     t.string   "event_name"
-    t.float    "latitude"
-    t.float    "longitude"
+    t.float    "lat"
+    t.float    "lng"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
