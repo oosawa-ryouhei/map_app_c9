@@ -1,6 +1,9 @@
 class NotesController < ApplicationController
   before_action :set_note, only: [:show, :edit, :update, :destroy]
 
+  def maintenance
+  end
+
   # GET /notes
   # GET /notes.json
   def index

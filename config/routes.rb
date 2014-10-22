@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   resources :notes
+  match '/maintenance', to: 'notes#maintenance', via: 'get'
 
   root 'notes#index'
 
