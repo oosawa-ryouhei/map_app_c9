@@ -5,16 +5,25 @@ class NotesController < ApplicationController
   # GET /notes.json
   def index
     @notes = Note.all
+    @lat_max = Note.maximum(:lat)
+    @lat_min = Note.minimum(:lat)
+    @lng_max = Note.maximum(:lng)
+    @lng_min = Note.minimum(:lng)
   end
 
   # GET /notes/1
   # GET /notes/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.js
+      format.json { render json: @note }
+    end
   end
 
   # GET /notes/new
   def new
-    @note = Note.new
+    @note = Note.new(lat: params[:lat], lng: params[:lng])
   end
 
   # GET /notes/1/edit
@@ -25,6 +34,13 @@ class NotesController < ApplicationController
   # POST /notes.json
   def create
     @note = Note.new(note_params)
+    upload_file = note_params[:image_file_name]
+    content = {}
+    if upload_file != nil
+      content[:upload_file] = upload_file.read
+      content[:upload_file_name] = upload_file.original_filename
+      render plain: content[:upload_file_name]
+    end
 
     respond_to do |format|
       if @note.save
@@ -69,6 +85,6 @@ class NotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def note_params
-      params.require(:note).permit(:student_name, :student_number, :student_grade, :student_class, :title, :body, :observed_at, :event_name, :latitude, :longitude)
+      params.require(:note).permit(:student_name, :student_number, :student_grade, :student_class, :title, :body, :observed_at, :event_name, :lat, :lng)
     end
 end

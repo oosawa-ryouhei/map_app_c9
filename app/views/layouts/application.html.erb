@@ -1,70 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
-  <title>FieldNote</title>
+  <meta charset="UTF-8">
+  <title>尾駮沼の観察記録</title>
   <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-  <script type="text/javascript" src="markerclusterer_compiled.js"></script>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-
-
-  <script type="text/javascript" src="../../../css_js/jquery-1.9.1.min.js"></script>
-  <script type="text/javascript" src="jquery.carouFredSel-6.2.1-packed.js"></script>
-  <script>
-	$(function(){
-		$("#thumbNails").carouFredSel();
-	});
-</script>
-
-
-
-
-  
-  <style>
-     #main {
-     	background-color: red;
-    	width: 1325px;
-        height: 480px;
-    }
-
-    #map {
-    	float: left;
-       width: 70%;
-       height: 100%;
-
-    }
-    #info {
-    	overflow: auto;
-    	float: right;
-	  background-color: rgb(255,255,255);
-	  
-	  width: 30%;
-  	  height: 100%;
-	}
-	/*#list {
-		
-		overflow-x: scroll;
-		overflow-y: hidden; 
-		width: 1325px;
-		height: 130px;
-
-	}*/
-	.list {
-/*    margin:20px;*/
-/*    padding: 10px;*/
-    background-color:#ddd;
-    width:1320px;
-    height: 130px;
-    overflow:hidden;
-    }
-    
-    
-    </style>
 </head>
 <body>
-	
+<div id="header">
+  <div id="header_logo">
+    <h1><%= link_to "尾駮沼の観察記録", root_path %></h1>
+  </div>
+  <div id="header_menu">
+	<ul>
+	  <% if Mode.first.name == 'edit' %>
+	      <li><%= link_to image_tag("/images/pencil.png"), modes_path, { class: Mode.first.name } %></li>
+        <li><span>今は観察記録を書き込めます</span></li>
+        <% if edit_mode? %>
+          <li id="edit"><span>書く</span></li>
+          <li id="view"><%= link_to "見る", signout_path, method: :post, remote: true %></li>
+        <% else %>
+          <li id="edit"><%= link_to "書く", sessions_path, method: :post, remote: true %></li>
+          <li id="view"><span>見る</span></li>
+        <% end %>
+	  <% else %>
+        <li><%= link_to image_tag("/images/disabled_pencil.png"), modes_path, { class: Mode.first.name } %></li>
+        <li><span>今は観察記録を書き込めません</span></li>
+        <li id="edit"><span class="inactive">書く</span></li>
+        <li id="view"><span class="inactive">見る</span></li>
+	  <% end %>
+    </ul>
+  </div>
+</div>
 <%= yield %>
-
 </body>
 </html>

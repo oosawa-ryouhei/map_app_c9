@@ -1,0 +1,9 @@
+<% if Mode.first.name == 'edit' %>
+    <% if edit_mode? %>
+      <%= link_to "見る", signout_path, method: :post, remote: true %>
+    <% else %>
+      <span>見る</span>
+    <% end %>
+<% else %>
+    <span class="inactive">見る</span>
+<% end %>

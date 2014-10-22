@@ -1,0 +1,9 @@
+<% if Mode.first.name == 'edit' %>
+    <% if edit_mode? %>
+      <span>書く</span>
+    <% else %>
+      <%= link_to "書く", sessions_path, method: :post, remote: true %>
+    <% end %>
+<% else %>
+    <span class="inactive">書く</span>
+<% end %>

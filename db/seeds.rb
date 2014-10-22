@@ -32,8 +32,8 @@ data_files.each do |data_file|
       image_file_name: "#{heisei_year}/#{row[4]}",
       observed_at: observed_at,
       weather: row[6],
-      latitude: 40.965499 + Random.rand(0.01) - 0.005,
-      longitude: 141.356479 + Random.rand(0.01) - 0.005
+      lat: 40.965499 + Random.rand(0.01) - 0.005,
+      lng: 141.356479 + Random.rand(0.01) - 0.005
     )
   end
 end

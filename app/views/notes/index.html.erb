@@ -1,147 +1,38 @@
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+var MAPRAMBLE = {};
+<% if edit_mode? %>
+MAPRAMBLE.mode = 'edit';
+<% else %>
+MAPRAMBLE.mode = 'view';
+<% end %>
+MAPRAMBLE.notes = [];
+<% if @notes.present? %>
+  <% @notes.each do |note| %>
+MAPRAMBLE.notes.push(
+    <%=raw note.to_json %>
+);
+  <% end %>
+MAPRAMBLE.bounds = new google.maps.LatLngBounds(
+    new google.maps.LatLng(<%= @lat_min %>, <%= @lng_min %>),
+    new google.maps.LatLng(<%= @lat_max %>, <%= @lng_max %>)
+);
+<% end %>
+</script>
+<script src="/javascripts/mapRamble.js"></script>
+
 <div id="main">
-    <div id="map">
-        <script>
-          var options={
-             center: new google.maps.LatLng(40.9689298,141.3658779),
-             zoom:14,
-             mapTypeId:google.maps.MapTypeId.ROADMAP
-        };
-
-        var map=new google.maps.Map(
-           document.getElementById('map'),
-           options
-        );
-
-      </script>
-    </div>
-    
-      <script>
-        var Mapramble = {};
-          //Mapramble.mode = 'edit';
-          if (Mapramble.mode === true){
-            Mapramble.mode='edit';
-          }
-          else{
-            Mapramble.mode='viewer';           
-          }
-
-
-          Mapramble.places = [];
-          <% if @notes.present? %>
-            <% @notes.each do |note| %>
-              Mapramble.places.push({lat: <%= note.latitude %>, lng: <%= note.longitude %>, id: <%= note.id %> });
-            <% end %>
-          <% end %>
-          //Mapramble.bounds = new google.maps.LatLngBounds(
-          //     new google.maps.LatLng(65.616517, 165.485517),
-          //     new google.maps.LatLng(65.838241, 165.823699)
-          // );
-          
-      </script>
-        <script src="/javascript/mapRamble.js"></script>
-    
-    
+  <div id="map">
+  </div>
   <div id="info">
-    <h1 >まとめノート</h1>
-    <!-- <table>
-      <thead>
-        <tr> -->
- <!--          <th>名前</th>
-          <th>出席番号</th>
-          <th>学年</th>
-          <th>クラス</th> -->
-         <!--  <th>タイトル</th>
-          <th>本文</th>
-          <th>画像</th> -->
-          <!-- <th>日時</th>
-          <th>天気</th>
-          <th>イベント名</th>
-          <th>緯度<th>
-          <th>経度</th>-->
-          <!-- <th colspan="3"></th> -->
-
-          <!--    英語版>
-          <!-- <th>Student name</th>
-          <th>Student number</th>
-          <th>Student grade</th>
-          <th>Student class</th>
-          <th>Title</th>
-          <th>Body</th>
-          <th>Image File Name</th>
-          <th>Observed at</th>
-          <th>Weather</th>
-          <th>Event name</th>
-          <th>Latitude</th>
-          <th>Longitude</th>
-          <th colspan="3"></th> -->
-       <!--  </tr>
-      </thead>
- -->
-      <tbody>
-        <% @notes.each do |note| %>
-    
-     
-<!--             <td><%= note.student_name %></td>
-            <td><%= note.student_number %></td>
-            <td><%= note.student_grade %></td>
-            <td><%= note.student_class %></td> -->
-            <ul>
-            <tr><font size=3>
-            <li><h2>タイトル</h2></li>
-            <td><%= note.title %></td>
-            </tr>
-            <tr>
-            <li><h2>本文</h2></li>
-            <td><%= note.body %></td>
-            </tr>
-            <tr>
-            <li><h2>画像</h2></li>
-            <td><%= image_tag note.image_file_name, width: 325 ,height: 170 %></td>
-            </font></tr>
-            <!-- <td><%= note.observed_at %></td>
-            <td><%= note.weather %></td>
-            <td><%= note.event_name %></td>
-            <td><%= note.latitude %></td>
-            <td><%= note.longitude %></td> -->
-            <tr>
-            <td><%= link_to '見る', note %></td>
-            <td><%= link_to '編集', edit_note_path(note) %></td>
-            <td><%= link_to '削除', note, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-          </ul>
-          <hr>
-        <% end %>
-      </tbody>
-    </table>
-
+    <% @notes.each do |note| %>
+      <%= render note %>
+      <hr>
+    <% end %>
   </div>
-
-  
 </div>
-<div class="list">
-    <div id="thumbNails">
-    
-   <img alt="4 1 03" src="/assets/24/4-1-03.jpg" width="160px" height="125px"/>
-    <img alt="4 1 04" src="/assets/24/4-1-04.jpg" width="160px" height="125px"/>  
-    <img alt="4 1 05" src="/assets/24/4-1-05.jpg" width="160px" height="125px"/>
-    <img alt="4 1 06" src="/assets/24/4-1-06.jpg" width="160px" height="125px"/>  
-    <img alt="4 1 07" src="/assets/24/4-1-07.jpg" width="160px" height="125px"/>
-    <img alt="4 1 08" src="/assets/24/4-1-08.jpg" width="160px" height="125px"/>
-    <img alt="4 1 09" src="/assets/24/4-1-09.jpg" width="160px" height="125px"/>
-    <img alt="4 1 10" src="/assets/24/4-1-10.jpg" width="160px" height="125px"/>  
-    <img alt="4 1 11" src="/assets/24/4-1-11.jpg" width="160px" height="125px"/>
-    <img alt="4 1 12" src="/assets/24/4-1-12.jpg" width="160px" height="125px"/>
-    <img alt="4 1 13" src="/assets/24/4-1-13.jpg" width="160px" height="125px"/>
-    <img alt="4 1 14" src="/assets/24/4-1-14.jpg" width="160px" height="125px"/>
-    <img alt="4 1 15" src="/assets/24/4-1-15.jpg" width="160px" height="125px"/>
-    <img alt="4 1 16" src="/assets/24/4-1-16.jpg" width="160px" height="125px"/>
-    <img alt="4 1 17" src="/assets/24/4-1-17.jpg" width="160px" height="125px"/>
-    <img alt="4 1 18" src="/assets/24/4-1-18.jpg" width="160px" height="125px"/>
-
-
-    </div>
-  </div>
-
-
-<br>
+<div class="thumb-wrapper">
+  <ul id="thumb">
+  </ul>
+  <div class="carouPrev"></div>
+  <div class="carouNext"></div>
+</div>
