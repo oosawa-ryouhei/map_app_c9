@@ -1,0 +1,7 @@
+<h2><%= note.title %></h2>
+<p><%= note.body %></p>
+<p><%= image_tag note.image_file_name, width: 325 ,height: 170 %></p>
+<% if Mode.first.name == 'edit' %>
+  <%= link_to '[書き直す]', edit_note_path(note), remote: true %> 
+  <%= link_to '[削除する]', note, method: :delete, data: { confirm: '本当に削除しますか？' } %></p>
+<% end %>

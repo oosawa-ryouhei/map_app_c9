@@ -1,8 +1,6 @@
-<%= form_for(@note) do |f| %>
+<h2>観察記録</h2>
+<%= form_for(@note, remote: true) do |f| %>
   <% if @note.errors.any? %>
-  <div id="main">
-    <div id="map">マップ</div>
-
     <div id="error_explanation">
       <h2><%= pluralize(@note.errors.count, "error") %> prohibited this note from being saved:</h2>
 
@@ -15,53 +13,70 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :student_name %><br>
+    <%= f.label :event_name %>:
+    <%= f.text_field :event_name %>
+  </div>
+
+  <hr>
+
+  <div>
+    <div class="field" style="display: inline;">
+      <%= f.label :student_grade %>:
+      <%= f.number_field :student_grade %>
+    </div>
+
+    <div class="field" style="display: inline; margin-left: 1.5em;">
+      <%= f.label :student_class %>:
+      <%= f.number_field :student_class %>
+    </div>
+
+    <div class="field" style="display: inline; margin-left: 1.5em;">
+      <%= f.label :student_number %>:
+      <%= f.number_field :student_number %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.label :student_name %>:
     <%= f.text_field :student_name %>
   </div>
+
+  <hr>
+
   <div class="field">
-    <%= f.label :student_number %><br>
-    <%= f.text_field :student_number %>
+    <%= f.label :title %>:
+    <%= f.text_field :title, size: 40 %>
   </div>
+
   <div class="field">
-    <%= f.label :student_grade %><br>
-    <%= f.number_field :student_grade %>
+    <%= f.label :body %>:<br>
+    <%= f.text_area :body, { rows: 8 } %>
   </div>
+
   <div class="field">
-    <%= f.label :student_class %><br>
-    <%= f.number_field :student_class %>
-  </div>
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :body %><br>
-    <%= f.text_area :body %>
-  </div>
-  <div class="field">
-    <%= f.label:image_file_name %><br>
+    <%= f.label:image_file_name %>:<br>
     <%= f.text_field:image_file_name %>
     </div>
-    <div calss="field">
 
-    <%= f.label :observed_at %><br>
+  <div calss="field">
+    <%= f.label :observed_at %>:<br>
     <%= f.datetime_select :observed_at %>
   </div>
   
-    <div class="field">
-    <%= f.label :event_name %><br>
-    <%= f.text_field :event_name %>
-  </div>
   <div class="field">
-    <%= f.label :latitude %><br>
-    <%= f.text_field :latitude %>
+    <%= f.label :lat %>:
+    <%= f.text_field :lat, disabled: 'disabled' %>
   </div>
+
   <div class="field">
-    <%= f.label :longitude %><br>
-    <%= f.text_field :longitude %>
+    <%= f.label :lng %>:
+    <%= f.text_field :lng, disabled: 'disabled' %>
   </div>
+
+  <hr>
+
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "OK" %>
   </div>
   </div>
 <% end %>

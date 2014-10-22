@@ -14,11 +14,16 @@ class NotesController < ApplicationController
   # GET /notes/1
   # GET /notes/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.js
+      format.json { render json: @note }
+    end
   end
 
   # GET /notes/new
   def new
-    @note = Note.new
+    @note = Note.new(lat: params[:lat], lng: params[:lng])
   end
 
   # GET /notes/1/edit
@@ -73,6 +78,6 @@ class NotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def note_params
-      params.require(:note).permit(:student_name, :student_number, :student_grade, :student_class, :title, :body, :observed_at, :event_name, :latitude, :longitude)
+      params.require(:note).permit(:student_name, :student_number, :student_grade, :student_class, :title, :body, :observed_at, :event_name, :lat, :lng)
     end
 end

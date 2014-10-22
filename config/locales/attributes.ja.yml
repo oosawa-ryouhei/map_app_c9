@@ -1,0 +1,49 @@
+ja:
+  activerecord:
+    models:
+      note: '観察記録'
+      mode: 'モード'
+      user: 'ユーザー'
+    attributes:
+      note:
+        student_name: '名前'
+        student_number: '番号'
+        student_grade: '学年'
+        student_class: '組'
+        title: '題名'
+        body: '本文'
+        image_file_name: '画像ファイル名'
+        event_name: '行事'
+        lat: '緯度'
+        lng: '経度'
+        observed_at: '観察した日'
+      mode:
+        name: 'モード'
+      user:
+        name: '名前'
+        email: 'メールアドレス'
+        password: 'パスワード'
+        password_confirmation: 'パスワード(確認)'
+        remember_me: 'パスワードを記憶'
+        current_password: '現在のパスワード'
+        number: '学籍番号'
+        fpno: 'FeliCaポケットナンバー'
+        role: 'ロール'
+        role_id: 'ロールID'
+        seminar: 'ゼミ'
+        seminar_id: 'ゼミID'
+        total_experience: '総経験値'
+        average_level: '総合レベル'
+    successful:
+      messages:
+        created: "%{model}を保存しました。"
+        updated: "%{model}を更新しました。"
+        destroyed: "%{model}を削除しました。"
+    errors:
+      template:
+        header:
+          other: "%{model}に%{count}つのエラーが発生しました。"
+  errors:
+    messages:
+      not_saved: "エラー"
+      expired_at_too_old: "は現時刻より新しい日時にしてください。"

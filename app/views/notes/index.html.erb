@@ -24,60 +24,14 @@ MAPRAMBLE.bounds = new google.maps.LatLngBounds(
   <div id="map">
   </div>
   <div id="info">
-    <h1 >まとめノート</h1>
-      <tbody>
-        <% @notes.each do |note| %>
-            <ul>
-            <tr><font size=3>
-            <li><h2>タイトル</h2></li>
-            <td><%= note.title %></td>
-            </tr>
-            <tr>
-            <li><h2>本文</h2></li>
-            <td><%= note.body %></td>
-            </tr>
-            <tr>
-            <li><h2>画像</h2></li>
-            <td><%= image_tag note.image_file_name, width: 325 ,height: 170 %></td>
-            </font></tr>
-            <tr>
-            <td><%= link_to '見る', note %></td>
-            <td><%= link_to '編集', edit_note_path(note) %></td>
-            <td><%= link_to '削除', note, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-          </ul>
-          <hr>
-        <% end %>
-      </tbody>
-    </table>
+    <% @notes.each do |note| %>
+      <%= render note %>
+      <hr>
+    <% end %>
   </div>
 </div>
 <div class="thumb-wrapper">
   <ul id="thumb">
-    <li><img alt="4 1 02" src="/assets/24/4-1-02.jpg" width="160" height="125"></li>
-    <li><img alt="4 1 03" src="/assets/24/4-1-03.jpg" width="160" height="125"></li>
-    <li><img alt="4 1 04" src="/assets/24/4-1-04.jpg" width="160" height="125"></li>
-    <li><img alt="4 1 05" src="/assets/24/4-1-05.jpg" width="160" height="125"></li>
-    <li><img alt="4 1 06" src="/assets/24/4-1-06.jpg" width="160" height="125"></li>
-    <li><img alt="4 1 07" src="/assets/24/4-1-07.jpg" width="160" height="125"></li>
-    <li><img alt="4 1 08" src="/assets/24/4-1-08.jpg" width="160" height="125"></li>
-    <li><img alt="4 1 09" src="/assets/24/4-1-09.jpg" width="160" height="125"></li>
-    <li><img alt="4 1 10" src="/assets/24/4-1-10.jpg" width="160" height="125"></li>
-    <li><img alt="4 1 11" src="/assets/24/4-1-11.jpg" width="160" height="125"></li>
-    <li><img alt="4 1 12" src="/assets/24/4-1-12.jpg" width="160" height="125"></li>
-    <li><img alt="4 1 12b" src="/assets/24/4-1-12b.jpg" width="160" height="125"></li>
-    <li><img alt="4 1 13" src="/assets/24/4-1-13.jpg" width="160" height="125"></li>
-    <li><img alt="4 1 14" src="/assets/24/4-1-14.jpg" width="160" height="125"></li>
-    <li><img alt="4 1 15" src="/assets/24/4-1-15.jpg" width="160" height="125"></li>
-    <li><img alt="4 1 16" src="/assets/24/4-1-16.jpg" width="160" height="125"></li>
-    <li><img alt="4 1 17" src="/assets/24/4-1-17.jpg" width="160" height="125"></li>
-    <li><img alt="4 1 18" src="/assets/24/4-1-18.jpg" width="160" height="125"></li>
-    <li><img alt="4 1 19" src="/assets/24/4-1-19.jpg" width="160" height="125"></li>
-    <li><img alt="4 1 20" src="/assets/24/4-1-20.jpg" width="160" height="125"></li>
-    <li><img alt="4 1 21" src="/assets/24/4-1-21.jpg" width="160" height="125"></li>
-    <li><img alt="4 1 22" src="/assets/24/4-1-22.jpg" width="160" height="125"></li>
-    <li><img alt="4 1 23" src="/assets/24/4-1-23.jpg" width="160" height="125"></li>
-    <li><img alt="4 1 23b" src="/assets/24/4-1-23b.jpg" width="160" height="125"></li>
   </ul>
   <div class="carouPrev"></div>
   <div class="carouNext"></div>

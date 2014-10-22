@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-	<meta charset="UTF-8">
-  <title>尾駮沼観察</title>
+  <meta charset="UTF-8">
+  <title>尾駮沼の観察記録</title>
   <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -10,11 +10,20 @@
 </head>
 <body>
 <div id="header">
-  <h1>尾駮沼観察</h1>
-  <p><%= link_to "先生用メニュー", modes_path %></p>
+  <div id="header_logo">
+    <h1><%= link_to "尾駮沼の観察記録", root_path %></h1>
+  </div>
+  <div id="header_menu">
+	<ul>
+	  <% if Mode.first.name == 'edit' %>
+	      <li><%= link_to image_tag("/images/unlock.png"), modes_path, { class: Mode.first.name } %></li>
+	  <% else %>
+	      <li><%= link_to image_tag("/images/lock.png"), modes_path, { class: Mode.first.name } %></li>
+	  <% end %>
+      <li><span>登録 / 書き直し</span></li>
+    </ul>
+  </div>
 </div>
 <%= yield %>
-<div id="footer">
-</div>
 </body>
 </html>
