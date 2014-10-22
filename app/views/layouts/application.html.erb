@@ -16,11 +16,21 @@
   <div id="header_menu">
 	<ul>
 	  <% if Mode.first.name == 'edit' %>
-	      <li><%= link_to image_tag("/images/unlock.png"), modes_path, { class: Mode.first.name } %></li>
+	      <li><%= link_to image_tag("/images/pencil.png"), modes_path, { class: Mode.first.name } %></li>
+        <li><span>今は観察記録を書き込めます</span></li>
+        <% if edit_mode? %>
+          <li id="edit"><span>書く</span></li>
+          <li id="view"><%= link_to "見る", signout_path, method: :post, remote: true %></li>
+        <% else %>
+          <li id="edit"><%= link_to "書く", sessions_path, method: :post, remote: true %></li>
+          <li id="view"><span>見る</span></li>
+        <% end %>
 	  <% else %>
-	      <li><%= link_to image_tag("/images/lock.png"), modes_path, { class: Mode.first.name } %></li>
+        <li><%= link_to image_tag("/images/disabled_pencil.png"), modes_path, { class: Mode.first.name } %></li>
+        <li><span>今は観察記録を書き込めません</span></li>
+        <li id="edit"><span class="inactive">書く</span></li>
+        <li id="view"><span class="inactive">見る</span></li>
 	  <% end %>
-      <li><span>登録 / 書き直し</span></li>
     </ul>
   </div>
 </div>

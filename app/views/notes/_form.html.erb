@@ -54,8 +54,11 @@
   </div>
 
   <div class="field">
-    <%= f.label:image_file_name %>:<br>
-    <%= f.text_field:image_file_name %>
+    <% if @note.image_file_name %>
+    <%= image_tag @note.image_file_name, width: 350 %><br>
+    <% end %>
+    <%= f.label :image_file_name %>:<br>
+    <%= f.text_field :image_file_name %>
     </div>
 
   <div calss="field">
@@ -65,18 +68,19 @@
   
   <div class="field">
     <%= f.label :lat %>:
-    <%= f.text_field :lat, disabled: 'disabled' %>
+    <%= f.text_field :lat, readonly: 'readonly' %>
   </div>
 
   <div class="field">
     <%= f.label :lng %>:
-    <%= f.text_field :lng, disabled: 'disabled' %>
+    <%= f.text_field :lng, readonly: 'readonly' %>
   </div>
 
   <hr>
 
   <div class="actions">
-    <%= f.submit "OK" %>
-  </div>
+    <%= f.submit "保存する" %>
   </div>
 <% end %>
+
+<%= link_to "[とりやめ]", notes_path %>

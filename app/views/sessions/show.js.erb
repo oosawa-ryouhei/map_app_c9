@@ -1,0 +1,11 @@
+$('#view').html("<%=j render 'view' %>");
+$('#edit').html("<%=j render 'edit' %>");
+console.log(<%= Mode.first.name %>);
+console.log(<%= Mode.first.name == 'edit' %>);
+console.log(<%= current_mode %>);
+console.log(<%= edit_mode? %>);
+<% if edit_mode? %>
+MAPRAMBLE.mode = 'edit';
+<% else %>
+MAPRAMBLE.mode = 'view';
+<% end %>

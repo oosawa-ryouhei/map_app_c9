@@ -34,6 +34,13 @@ class NotesController < ApplicationController
   # POST /notes.json
   def create
     @note = Note.new(note_params)
+    upload_file = note_params[:image_file_name]
+    content = {}
+    if upload_file != nil
+      content[:upload_file] = upload_file.read
+      content[:upload_file_name] = upload_file.original_filename
+      render plain: content[:upload_file_name]
+    end
 
     respond_to do |format|
       if @note.save

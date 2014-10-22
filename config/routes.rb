@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   root 'notes#index'
 
   resources :modes, only: [:index, :update]
+
+  resources :sessions, only: [:create, :destroy, :show]
+  match '/signout', to: 'sessions#destroy', via: 'post'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

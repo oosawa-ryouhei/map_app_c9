@@ -3,6 +3,7 @@
 
 // 使用する変数の準備
 MAPRAMBLE.markers = [];
+MAPRAMBLE.current_marker = null;
 
 // デバッグ情報の表示
 MAPRAMBLE.debug = false;
@@ -59,9 +60,15 @@ MAPRAMBLE.addMarker = function (note) {
     google.maps.event.addListener(marker, 'click', function () {
         return (function (id) {
             if (MAPRAMBLE.mode === 'edit') {
-                $.mobile.changePage('/notes/' + id + '/edit');
+                var mess = '<a id="edit_note_anchor" data-remote="true" href="/notes/' + id + '/edit">edit</a>';
+                // console.log(mess);
+                $('body').append(mess);
+                $("#edit_note_anchor").trigger('click').remove();
             } else {
-                $.mobile.changePage('/notes/' + id);
+                var mess = '<a id="show_note_anchor" data-remote="true" href="/notes/' + id + '">show</a>';
+                // console.log(mess);
+                $('body').append(mess);
+                $("#show_note_anchor").trigger('click').remove();
             }
         }(note.id));
     });
@@ -81,10 +88,10 @@ MAPRAMBLE.setHeight = function () {
         infoWidth = $("#info").width();
     $("#main").css("height", windowInnerHeight - headerHeight - footerHeight);
     $("#map").css("height", windowInnerHeight - headerHeight - footerHeight);
-    $("#info").css("height", windowInnerHeight - headerHeight - footerHeight);
-    $("#map").css("width", windowInnerWidth - infoWidth - 30);
+    $("#info").css("height", windowInnerHeight - headerHeight - footerHeight - 10);
+    $("#map").css("width", windowInnerWidth - infoWidth - 40);
     $(".thumb-wrapper").css("width", windowInnerWidth - 110);
-    console.log(footerHeight);
+    // console.log(footerHeight);
 };
 
 // イベントハンドラの設定
@@ -96,13 +103,26 @@ MAPRAMBLE.setEventHandler = function () {
     });
 
     if (this.mode === 'edit') {
-        google.maps.event.addListener(this.map, 'click', function (event) {
-            console.log('click');
-            var mess = '<a id="new_note" data-remote="true" href="/notes/new?lat=' + event.latLng.lat() + '&lng=' + event.latLng.lng() + '">new</a>';
-            console.log(mess);
+        google.maps.event.addListener(this.map, 'rightclick', function (event) {
+            console.log('rightclick');
+
+            var options = {
+                position: new google.maps.LatLng(event.latLng.lat(), event.latLng.lng()),
+                map: MAPRAMBLE.map,
+                icon: "http://maps.google.com/mapfiles/arrow.png",
+                shadow: "http://maps.google.com/mapfiles/arrowshadow.png"
+            };
+
+            if (MAPRAMBLE.current_marker !== null) {
+                MAPRAMBLE.current_marker.setMap(null);
+            }
+
+            MAPRAMBLE.current_marker = new google.maps.Marker(options);
+
+            var mess = '<a id="new_note_anchor" data-remote="true" href="/notes/new?lat=' + event.latLng.lat() + '&lng=' + event.latLng.lng() + '">new</a>';
+            // console.log(mess);
             $('body').append(mess);
-            $("#new_note").trigger('click');
-            $("new_note").remove();
+            $("#new_note_anchor").trigger('click').remove();
             //$(mess).trigger('click');
         });
     }

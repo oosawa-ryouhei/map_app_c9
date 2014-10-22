@@ -2,8 +2,9 @@
 <p id="notice"><%= notice %></p>
 <%= form_for(@mode) do |f| %>
 <%= f.radio_button :name, 'view', {checked: (@mode.name == "view")} %>
-<%= f.label :name, "閲覧モード", value: "view" %><br>
+<%= f.label :name, "書き込めないモード", value: "view" %><br>
 <%= f.radio_button :name, 'edit', {checked: (@mode.name == "edit")} %>
-<%= f.label :name, "編集モード", value: "edit" %><br>
+<%= f.label :name, "書き込めるモード", value: "edit" %><br>
 <%= f.submit "モードの変更" %>
 <% end %>
+<%= link_to "マップに戻る", root_path %>
