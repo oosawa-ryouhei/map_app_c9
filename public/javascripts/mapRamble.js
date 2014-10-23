@@ -81,7 +81,7 @@ MAPRAMBLE.addMarker = function (note) {
                     break;
                 }
             }
-            $("#thumb").append('<li><a data-remote="true" href="/notes/' + note_tmp.id + '"><img src="/assets/' + note_tmp.image_file_name + '" alt="" height="125"></a></li>');
+            $("#thumb").append('<li><a data-remote="true" href="/notes/' + note_tmp.id + '"><img src="/images/' + note_tmp.image_file_name + '" alt="" height="125"></a></li>');
             carouObj = {};
             // carouObj.auto = false;
             // carouObj.circular = false;
@@ -190,9 +190,9 @@ $(document).ready(function () {
                 }
                 if (note.image_file_name !== null) {
                     if (MAPRAMBLE.mode === 'edit') {
-                        $("#thumb").append('<li><a data-remote="true" href="/notes/' + note.id + '"><img src="/assets/' + note.image_file_name + '" alt="" height="125"></a></li>');
+                        $("#thumb").append('<li><a data-remote="true" href="/notes/' + note.id + '"><img src="/images/' + note.image_file_name + '" alt="" height="125"></a></li>');
                     } else {
-                        $("#thumb").append('<li><a data-remote="true" href="/notes/' + note.id + '"><img src="/assets/' + note.image_file_name + '" alt="" height="125"></a></li>');
+                        $("#thumb").append('<li><a data-remote="true" href="/notes/' + note.id + '"><img src="/images/' + note.image_file_name + '" alt="" height="125"></a></li>');
                     }
                 }
             }
@@ -212,9 +212,9 @@ $(document).ready(function () {
         for (i = 0; i < MAPRAMBLE.notes.length; i += 1) {
             if (MAPRAMBLE.notes[i].image_file_name !== null) {
                 if (MAPRAMBLE.mode === 'edit') {
-                    $("#thumb").append('<li><a data-remote="true" href="/notes/' + MAPRAMBLE.notes[i].id + '"><img src="/assets/' + MAPRAMBLE.notes[i].image_file_name + '" alt="" height="125"></a></li>');
+                    $("#thumb").append('<li><a data-remote="true" href="/notes/' + MAPRAMBLE.notes[i].id + '"><img src="/images/' + MAPRAMBLE.notes[i].image_file_name + '" alt="" height="125"></a></li>');
                 } else {
-                    $("#thumb").append('<li><a data-remote="true" href="/notes/' + MAPRAMBLE.notes[i].id + '"><img src="/assets/' + MAPRAMBLE.notes[i].image_file_name + '" alt="" height="125"></a></li>');
+                    $("#thumb").append('<li><a data-remote="true" href="/notes/' + MAPRAMBLE.notes[i].id + '"><img src="/images/' + MAPRAMBLE.notes[i].image_file_name + '" alt="" height="125"></a></li>');
                 }
             }
         }
