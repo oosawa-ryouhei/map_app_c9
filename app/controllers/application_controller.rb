@@ -7,8 +7,10 @@ class ApplicationController < ActionController::Base
 
   protected
     def check_ip
-      unless (controller_name == 'notes' && action_name == 'maintenance')
-        redirect_to maintenance_url unless request.ip == '127.0.0.1'
+      if edit_mode?
+        unless (controller_name == 'notes' && action_name == 'maintenance')
+          redirect_to maintenance_url unless request.ip == '127.0.0.1'
+        end
       end
     end
 end
