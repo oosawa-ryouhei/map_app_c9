@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
         unless (controller_name == 'notes' && action_name == 'maintenance')
           redirect_to maintenance_url unless request.ip == '127.0.0.1'
         end
+      else
+        if (controller_name == 'notes' && action_name == 'edit')
+          redirect_to maintenance_url unless request.ip == '127.0.0.1'
+        end
       end
     end
 end
