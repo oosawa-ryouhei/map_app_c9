@@ -20,7 +20,7 @@ class NotesController < ApplicationController
     respond_to do |format|
       format.html
       format.js
-      format.json { render json: @note }
+      format.json
     end
   end
 
@@ -37,6 +37,8 @@ class NotesController < ApplicationController
   # POST /notes.json
   def create
     @note = Note.new(note_params)
+    @note.image_file_name = 'no_image.png' if @note.image_file_name == nil
+=begin
     upload_file = note_params[:image_file_name]
     content = {}
     if upload_file != nil
@@ -44,7 +46,7 @@ class NotesController < ApplicationController
       content[:upload_file_name] = upload_file.original_filename
       render plain: content[:upload_file_name]
     end
-
+=end
     respond_to do |format|
       if @note.save
         format.html { redirect_to @note, notice: 'Note was successfully created.' }
@@ -84,6 +86,7 @@ class NotesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_note
       @note = Note.find(params[:id])
+      @note.image_file_name = 'no_image.png' if @note.image_file_name == nil
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

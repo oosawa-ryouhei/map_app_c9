@@ -1,22 +1,13 @@
 <script src="/javascripts/mapRamble.js"></script>
 
 <script>
-//var MAPRAMBLE = {};
 <% if edit_mode? %>
 MAPRAMBLE.mode = 'edit';
 <% else %>
 MAPRAMBLE.mode = 'view';
 <% end %>
-//MAPRAMBLE.notes = [];
+
 <% if @notes.present? %>
-  <% @notes.each do |note| %>
-//MAPRAMBLE.notes.push({
-//    id: <%= note.id %>,
-//    lat: <%= note.lat %>,
-//    lng: <%= note.lng %>,
-//    image_file_name: "<%= note.image_file_name %>"
-//});
-  <% end %>
 MAPRAMBLE.bounds = new google.maps.LatLngBounds(
     new google.maps.LatLng(<%= @lat_min %>, <%= @lng_min %>),
     new google.maps.LatLng(<%= @lat_max %>, <%= @lng_max %>)

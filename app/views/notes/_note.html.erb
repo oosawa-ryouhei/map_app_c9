@@ -1,8 +1,13 @@
+<% if controller.action_name == 'show' %>
+<p><%= note.event_name %></p>
+<% end %>
 <h2><%= note.title %></h2>
-<p><%= note.body %></p>
+<p><%= simple_format h note.body %></p>
 <% if note.image_file_name %>
 <p><%= image_tag note.image_file_name, width: 350 %></p>
 <% end %>
+<%= I18n.l note.observed_at %>
+<%= note.weather %>
 <% if Mode.first.name == 'edit' %>
   <p>
 	<%= link_to '[書き直す]', edit_note_path(note), remote: true %> 

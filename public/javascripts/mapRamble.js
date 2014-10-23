@@ -1,5 +1,5 @@
-/*global google, $, MAPRAMBLE */
-/*jslint browser:true, devel:true */
+/*global google, MarkerClusterer, ClusterIcon, $ */
+/*jslint browser:true, devel:true, nomen:true */
 
 var MAPRAMBLE = {};
 
@@ -61,17 +61,39 @@ MAPRAMBLE.addMarker = function (note) {
 
     google.maps.event.addListener(marker, 'click', function () {
         return (function (id) {
+            var mess, j, note_tmp, carouObj;
             if (MAPRAMBLE.mode === 'edit') {
-                var mess = '<a id="edit_note_anchor" data-remote="true" href="/notes/' + id + '/edit">edit</a>';
+                mess = '<a id="edit_note_anchor" data-remote="true" href="/notes/' + id + '">edit</a>';
                 // console.log(mess);
                 $('body').append(mess);
                 $("#edit_note_anchor").trigger('click').remove();
             } else {
-                var mess = '<a id="show_note_anchor" data-remote="true" href="/notes/' + id + '">show</a>';
+                mess = '<a id="show_note_anchor" data-remote="true" href="/notes/' + id + '">show</a>';
                 // console.log(mess);
                 $('body').append(mess);
                 $("#show_note_anchor").trigger('click').remove();
             }
+
+            $("#thumb").empty();
+            for (j = 0; j < MAPRAMBLE.notes.length; j += 1) {
+                if (MAPRAMBLE.notes[j].id === id) {
+                    note_tmp = MAPRAMBLE.notes[j];
+                    break;
+                }
+            }
+            $("#thumb").append('<li><a data-remote="true" href="/notes/' + note_tmp.id + '"><img src="/assets/' + note_tmp.image_file_name + '" alt="" height="125"></a></li>');
+            carouObj = {};
+            // carouObj.auto = false;
+            // carouObj.circular = false;
+            // carouObj.infinite = false;
+            carouObj.prev = ".carouPrev";
+            carouObj.next = ".carouNext";
+            carouObj.scroll = {
+                items: 1,
+                duration: 500,
+                pauseOnHover: true
+            };
+            $("#thumb").carouFredSel(carouObj);
         }(note.id));
     });
 
@@ -106,9 +128,9 @@ MAPRAMBLE.setEventHandler = function () {
 
     if (this.mode === 'edit') {
         google.maps.event.addListener(this.map, 'rightclick', function (event) {
-            console.log('rightclick');
+            var options, mess;
 
-            var options = {
+            options = {
                 position: new google.maps.LatLng(event.latLng.lat(), event.latLng.lng()),
                 map: MAPRAMBLE.map,
                 icon: "http://maps.google.com/mapfiles/arrow.png",
@@ -121,7 +143,7 @@ MAPRAMBLE.setEventHandler = function () {
 
             MAPRAMBLE.current_marker = new google.maps.Marker(options);
 
-            var mess = '<a id="new_note_anchor" data-remote="true" href="/notes/new?lat=' + event.latLng.lat() + '&lng=' + event.latLng.lng() + '">new</a>';
+            mess = '<a id="new_note_anchor" data-remote="true" href="/notes/new?lat=' + event.latLng.lat() + '&lng=' + event.latLng.lng() + '">new</a>';
             // console.log(mess);
             $('body').append(mess);
             $("#new_note_anchor").trigger('click').remove();
@@ -150,30 +172,31 @@ $(document).ready(function () {
         MAPRAMBLE.fitBounds();
         MAPRAMBLE.setEventHandler();
         MAPRAMBLE.markerCluster = new MarkerClusterer(MAPRAMBLE.map, MAPRAMBLE.markers, {gridSize: 50, maxZoom: 15, zoomOnClick: false});
-        ClusterIcon.prototype.triggerClusterClick = function() {
-            var markerClusterer = this.cluster_.getMarkerClusterer();
+        ClusterIcon.prototype.triggerClusterClick = function () {
+            var markerClusterer, markers, j, note, carouObj;
+            markerClusterer = this.cluster_.getMarkerClusterer();
 
             // Trigger the clusterclick event.
             google.maps.event.trigger(markerClusterer, 'clusterclick', this.cluster_);
 
-            var markers = this.cluster_.markers_;
+            markers = this.cluster_.markers_;
             $("#thumb").empty();
-            for (var i = 0; i < markers.length; i += 1) {
-                for (var j = 0; j < MAPRAMBLE.notes.length; j += 1) {
+            for (i = 0; i < markers.length; i += 1) {
+                for (j = 0; j < MAPRAMBLE.notes.length; j += 1) {
                     if (MAPRAMBLE.notes[j].id === markers[i].note_id) {
-                        var note = MAPRAMBLE.notes[j];
+                        note = MAPRAMBLE.notes[j];
                         break;
                     }
                 }
                 if (note.image_file_name !== null) {
                     if (MAPRAMBLE.mode === 'edit') {
-                        $("#thumb").append('<li><a data-remote="true" href="/notes/' + note.id + '/edit"><img src="/assets/' + note.image_file_name +'" alt="" height="125"></a></li>');
+                        $("#thumb").append('<li><a data-remote="true" href="/notes/' + note.id + '"><img src="/assets/' + note.image_file_name + '" alt="" height="125"></a></li>');
                     } else {
-                        $("#thumb").append('<li><a data-remote="true" href="/notes/' + note.id + '"><img src="/assets/' + note.image_file_name +'" alt="" height="125"></a></li>');
+                        $("#thumb").append('<li><a data-remote="true" href="/notes/' + note.id + '"><img src="/assets/' + note.image_file_name + '" alt="" height="125"></a></li>');
                     }
                 }
             }
-            var carouObj = new Object();
+            carouObj = {};
             // carouObj.auto = false;
             // carouObj.circular = false;
             // carouObj.infinite = false;
@@ -181,7 +204,7 @@ $(document).ready(function () {
             carouObj.next = ".carouNext";
             carouObj.scroll = {
                 items: 1,
-                duration: 500,                         
+                duration: 500,
                 pauseOnHover: true
             };
             $("#thumb").carouFredSel(carouObj);
@@ -189,13 +212,13 @@ $(document).ready(function () {
         for (i = 0; i < MAPRAMBLE.notes.length; i += 1) {
             if (MAPRAMBLE.notes[i].image_file_name !== null) {
                 if (MAPRAMBLE.mode === 'edit') {
-                   $("#thumb").append('<li><a data-remote="true" href="/notes/' + MAPRAMBLE.notes[i].id + '/edit"><img src="/assets/' + MAPRAMBLE.notes[i].image_file_name +'" alt="" height="125"></a></li>');            
+                    $("#thumb").append('<li><a data-remote="true" href="/notes/' + MAPRAMBLE.notes[i].id + '"><img src="/assets/' + MAPRAMBLE.notes[i].image_file_name + '" alt="" height="125"></a></li>');
                 } else {
-                   $("#thumb").append('<li><a data-remote="true" href="/notes/' + MAPRAMBLE.notes[i].id + '"><img src="/assets/' + MAPRAMBLE.notes[i].image_file_name +'" alt="" height="125"></a></li>');                        
-                }            
+                    $("#thumb").append('<li><a data-remote="true" href="/notes/' + MAPRAMBLE.notes[i].id + '"><img src="/assets/' + MAPRAMBLE.notes[i].image_file_name + '" alt="" height="125"></a></li>');
+                }
             }
         }
-        var carouObj = new Object();
+        var carouObj = {};
         // carouObj.auto = false;
         // carouObj.circular = false;
         // carouObj.infinite = false;
@@ -203,7 +226,7 @@ $(document).ready(function () {
         carouObj.next = ".carouNext";
         carouObj.scroll = {
             items: 1,
-            duration: 500,                         
+            duration: 500,
             pauseOnHover: true
         };
         $("#thumb").carouFredSel(carouObj);

@@ -14,6 +14,7 @@ ja:
         body: '本文'
         image_file_name: '画像ファイル名'
         event_name: '行事'
+        weather: '天気'
         lat: '緯度'
         lng: '経度'
         observed_at: '観察した日'
