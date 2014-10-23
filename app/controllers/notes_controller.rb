@@ -31,6 +31,7 @@ class NotesController < ApplicationController
 
   # GET /notes/1/edit
   def edit
+    redirect_to maintenance_url unless edit_mode?
   end
 
   # POST /notes
