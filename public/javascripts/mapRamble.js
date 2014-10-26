@@ -107,7 +107,7 @@ MAPRAMBLE.setHeight = function () {
     'use strict';
     var windowInnerHeight = $(window).innerHeight(),
         headerHeight = $("#header").height(),
-        footerHeight = $("#footer").height(),
+        footerHeight = $("#footer").height() + 5,
         thumbHeight = $("#thumb").height() + 60,
         windowInnerWidth = $(window).innerWidth(),
         infoWidth = $("#info").width(),
