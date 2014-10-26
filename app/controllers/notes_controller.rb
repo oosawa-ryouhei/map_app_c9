@@ -92,7 +92,7 @@ class NotesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_note
       @note = Note.find(params[:id])
-      @note.image_file_name = 'no_image.png' if @note.image_file_name == nil
+      #@note.image_file_name = 'no_image.png' if @note.image_file_name == nil
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
