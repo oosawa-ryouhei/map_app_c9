@@ -7,12 +7,12 @@ class ApplicationController < ActionController::Base
 
   protected
     def check_ip
-=begin
       if edit_mode?
         unless (controller_name == 'notes' && action_name == 'maintenance')
+=begin
           redirect_to maintenance_url unless request.ip == '202.216.100.21'
+=end
         end
       end
-=end
     end
 end
