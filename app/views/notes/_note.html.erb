@@ -1,10 +1,11 @@
 <% if controller.action_name == 'show' %>
 <p><%= note.event_name %></p>
 <% end %>
+<div class="article">
 <h2><%= note.title %></h2>
-<p><%= simple_format h note.body %></p>
+<%= simple_format h note.body %>
 <% if note.image_file_name %>
-<p><%= image_tag note.image_file_name, width: 350 %></p>
+<p style="margin-top: 10px;"><%= image_tag note.image_file_name, width: 350 %></p>
 <% end %>
 <%= I18n.l note.observed_at %>
 <%= note.weather %>
@@ -17,3 +18,4 @@
 	<% end %>
   </p>
 <% end %>
+</div>

@@ -107,13 +107,28 @@ MAPRAMBLE.setHeight = function () {
     'use strict';
     var windowInnerHeight = $(window).innerHeight(),
         headerHeight = $("#header").height(),
-        footerHeight = $("#thumb").height() + 60,
+        footerHeight = $("#footer").height(),
+        thumbHeight = $("#thumb").height() + 60,
         windowInnerWidth = $(window).innerWidth(),
-        infoWidth = $("#info").width();
-    $("#main").css("height", windowInnerHeight - headerHeight - footerHeight);
-    $("#map").css("height", windowInnerHeight - headerHeight - footerHeight);
-    $("#info").css("height", windowInnerHeight - headerHeight - footerHeight - 10);
+        infoWidth = $("#info").width(),
+        carouObj;
+    $("#main").css("height", windowInnerHeight - headerHeight - thumbHeight - footerHeight);
+    $("#map").css("height", windowInnerHeight - headerHeight - thumbHeight - footerHeight);
+    $("#info").css("height", windowInnerHeight - headerHeight - thumbHeight - footerHeight - 10);
     $("#map").css("width", windowInnerWidth - infoWidth - 40);
+
+    carouObj = {};
+    // carouObj.auto = false;
+    // carouObj.circular = false;
+    // carouObj.infinite = false;
+    carouObj.prev = ".carouPrev";
+    carouObj.next = ".carouNext";
+    carouObj.scroll = {
+        items: 1,
+        duration: 500,
+        pauseOnHover: true
+    };
+    $("#thumb").carouFredSel(carouObj);
     $(".thumb-wrapper").css("width", windowInnerWidth - 110);
     // console.log(footerHeight);
 };

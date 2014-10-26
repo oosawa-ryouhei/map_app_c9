@@ -22,6 +22,18 @@
     text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
 }
 
+#footer {
+    position: relative;
+    padding: 3px 20px 3px 20px;
+    height: 35px;
+
+    background-image: linear-gradient(#666, #777 60%, #555);
+    background-repeat: no-repeat;
+
+    color: #eee;
+    font-size: 10px;
+}
+
 #header_logo,
 #header_menu {
     height: 64px;
@@ -226,6 +238,17 @@ body {
     }
     div {
         margin-bottom: 10px;
+    }
+}
+
+#info .article {
+    margin: 10px 0 20px 0;
+    padding: 0 5px 5px 10px;
+    background-color: #f6f6ee;
+    border-radius: 3px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+    img {
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
     }
 }
 

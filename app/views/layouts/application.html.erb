@@ -2,6 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
+  <meta name="request.ip" content="<%= request.ip %>">
   <title>尾駮沼の観察記録</title>
   <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
   <%= stylesheet_link_tag    'application', media: 'all' %>
@@ -35,5 +36,9 @@
   </div>
 </div>
 <%= yield %>
+<div id="footer">
+  コンテンツ: 青森県六ヶ所村立尾駮小学校 / 〒039-3212 青森県六ヶ所村大字尾駮字野附968 / TEL 0175-72-2016<br>
+  システム: 青森大学ソフトウェア情報学部 / 〒030-0943 青森県青森市幸畑2-3-1 / TEL 017-738-2001
+</div>
 </body>
 </html>

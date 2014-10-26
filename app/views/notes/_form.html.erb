@@ -1,3 +1,4 @@
+<div class="article">
 <h2>観察記録</h2>
 <%= form_for(@note, remote: true) do |f| %>
   <% if @note.errors.any? %>
@@ -89,3 +90,4 @@
 <% end %>
 
 <%= link_to "[とりやめ]", notes_path %>
+</div>

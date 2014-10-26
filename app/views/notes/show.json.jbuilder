@@ -1,1 +1,1 @@
-json.extract! @note, :id, :title, :body, :observed_at, :event_name, :lat, :lng, :image_file_name, :weather
+json.extract! @note, :id, :event_name, :title, :body, :image_file_name, :observed_at, :weather, :lat, :lng
