@@ -43,7 +43,7 @@ class NotesController < ApplicationController
   # POST /notes.json
   def create
     @note = Note.new(note_params)
-    @note.image_file_name = 'no_image.png' if @note.image_file_name == nil
+    #@note.image_file_name = 'no_image.png' if @note.image_file_name == nil
 =begin
     upload_file = note_params[:image_file_name]
     content = {}
