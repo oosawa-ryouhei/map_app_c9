@@ -31,6 +31,11 @@ class NotesController < ApplicationController
 
   # GET /notes/1/edit
   def edit
+    @note.student_grade = 4
+    @note.student_class = 1
+    @note.event_name = "平成26年度尾駮沼観察"
+    @note.observed_at = "2014-10-02 11:00:00"
+    @note.weather = "はれ"
     redirect_to maintenance_url unless edit_mode?
   end
 
