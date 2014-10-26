@@ -54,7 +54,7 @@ MAPRAMBLE.addMarker = function (note) {
     options = {
         position: new google.maps.LatLng(note.lat, note.lng),
         map: this.map,
-        icon: "http://maps.google.com/mapfiles/marker.png"
+        icon: "https://maps.google.com/mapfiles/marker.png"
     };
 
     marker = new google.maps.Marker(options);
@@ -148,8 +148,8 @@ MAPRAMBLE.setEventHandler = function () {
             options = {
                 position: new google.maps.LatLng(event.latLng.lat(), event.latLng.lng()),
                 map: MAPRAMBLE.map,
-                icon: "http://maps.google.com/mapfiles/arrow.png",
-                shadow: "http://maps.google.com/mapfiles/arrowshadow.png"
+                icon: "https://maps.google.com/mapfiles/arrow.png",
+                shadow: "https://maps.google.com/mapfiles/arrowshadow.png"
             };
 
             if (MAPRAMBLE.current_marker !== null) {
