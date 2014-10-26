@@ -26,12 +26,12 @@ class NotesController < ApplicationController
 
   # GET /notes/new
   def new
+    @note = Note.new(lat: params[:lat], lng: params[:lng])
     @note.student_grade = 4
     @note.student_class = 1
     @note.event_name = "平成26年度尾駮沼観察"
     @note.observed_at = "2014-10-02 11:00:00"
     @note.weather = "はれ"
-    @note = Note.new(lat: params[:lat], lng: params[:lng])
   end
 
   # GET /notes/1/edit
