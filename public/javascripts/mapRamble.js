@@ -184,7 +184,9 @@ $(document).ready(function () {
     $.getJSON("/notes.json", function (json) {
         MAPRAMBLE.notes = json;
         MAPRAMBLE.addPlaceMarkers();
-        MAPRAMBLE.fitBounds();
+        if (MAPRAMBLE.markers.length > 0) {
+            MAPRAMBLE.fitBounds();
+        }
         MAPRAMBLE.setEventHandler();
         MAPRAMBLE.markerCluster = new MarkerClusterer(MAPRAMBLE.map, MAPRAMBLE.markers, {gridSize: 50, maxZoom: 15, zoomOnClick: false});
         ClusterIcon.prototype.triggerClusterClick = function () {
