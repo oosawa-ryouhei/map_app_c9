@@ -1,12 +1,15 @@
 <div style="padding: 50px;">
-<h1>モードの変更</h1>
-<%= form_for(@mode) do |f| %>
-<%= f.radio_button :name, 'view', {checked: (@mode.name == "view")} %>
-<%= f.label :name, "書き込めないモード", value: "view" %><br>
-<%= f.radio_button :name, 'edit', {checked: (@mode.name == "edit")} %>
-<%= f.label :name, "書き込めるモード", value: "edit" %><br>
-<%= f.submit "モードの変更" %>
-<% end %>
-<br>
-<%= link_to "マップに戻る", root_path %>
+  <h1>モードの変更</h1>
+
+  <%= form_for(@mode) do |f| %>
+    <%= f.radio_button :name, 'view', {checked: (@mode.name == "view")} %>
+    <%= f.label :name, "書き込めないモード", value: "view" %><br>
+    <%= f.radio_button :name, 'edit', {checked: (@mode.name == "edit")} %>
+    <%= f.label :name, "書き込めるモード", value: "edit" %><br>
+    <%= f.submit "モードの変更" %>
+  <% end %>
+
+  <br>
+
+  <p><%= link_to "マップに戻る", root_path %></p>
 </div>

@@ -1,21 +1,38 @@
 <% if controller.action_name == 'show' %>
-<p><%= note.event_name %></p>
+  <p><%= note.event_name %></p>
 <% end %>
+
 <div class="article">
-<h2><%= note.title %></h2>
-<%= simple_format h note.body %>
-<% if note.image_file_name %>
-<p style="margin-top: 10px;"><%= image_tag note.image_file_name, width: 350 %></p>
-<% end %>
-<%= I18n.l note.observed_at %>
-<%= note.weather %>
-<% if Mode.first.name == 'edit' %>
-  <p>
-	<%= link_to '[書き直す]', edit_note_path(note), remote: true %> 
-	<%= link_to '[削除する]', note, method: :delete, data: { confirm: '本当に削除しますか？' } %> 
-	<% if controller.action_name != "index" %>
-	  <%= link_to '[これでOK]', notes_path %>
-	<% end %>
-  </p>
-<% end %>
+  <% if edit_mode? %>
+    <p>
+      学年: <%= note.student_grade %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      組: <%= note.student_class %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      番: <%= note.student_number %>
+    </p>
+
+    <hr>
+
+    <p>
+      名前: <%= note.student_name %>
+    </p>
+
+    <hr>
+  <% end %>
+
+  <h2><%= note.title %></h2>
+  <%= simple_format h note.body %>
+  <% if note.image_file_name %>
+    <p style="margin-top: 10px;"><%= image_tag note.image_file_name, width: 350 %></p>
+  <% end %>
+  <%= I18n.l note.observed_at %>
+  <%= note.weather %>
+  <% if edit_mode? %>
+    <p>
+      <%= link_to '[書き直す]', edit_note_path(note), remote: true %> 
+      <%= link_to '[削除する]', note, method: :delete, data: { confirm: '本当に削除しますか？' } %> 
+      <% if controller.action_name != "index" %>
+        <%= link_to '[これでOK]', notes_path %>
+      <% end %>
+    </p>
+  <% end %>
 </div>

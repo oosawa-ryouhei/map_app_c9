@@ -1,14 +1,12 @@
 Rails.application.routes.draw do
 
   resources :notes
-  match '/maintenance', to: 'notes#maintenance', via: 'get'
+  resources :modes, only: [:index, :update]
 
   root 'notes#index'
 
-  resources :modes, only: [:index, :update]
+  match '/maintenance', to: 'notes#maintenance', via: 'get'
 
-  resources :sessions, only: [:create, :destroy, :show]
-  match '/signout', to: 'sessions#destroy', via: 'post'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

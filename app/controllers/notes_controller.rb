@@ -8,10 +8,15 @@ class NotesController < ApplicationController
   # GET /notes.json
   def index
     @notes = Note.all
-    @lat_max = Note.maximum(:lat)
-    @lat_min = Note.minimum(:lat)
-    @lng_max = Note.maximum(:lng)
-    @lng_min = Note.minimum(:lng)
+    if @notes.present?
+      @notes.each do |note|
+        note.image_file_name = 'no_image.png' if note.image_file_name.length == 0
+      end
+      @lat_max = Note.maximum(:lat)
+      @lat_min = Note.minimum(:lat)
+      @lng_max = Note.maximum(:lng)
+      @lng_min = Note.minimum(:lng)
+    end
   end
 
   # GET /notes/1
@@ -27,11 +32,14 @@ class NotesController < ApplicationController
   # GET /notes/new
   def new
     @note = Note.new(lat: params[:lat], lng: params[:lng])
+=begin
+    # 初期値
     @note.student_grade = 4
     @note.student_class = 1
     @note.event_name = "平成26年度尾駮沼観察"
     @note.observed_at = "2014-10-02 11:00:00"
     @note.weather = "はれ"
+=end
   end
 
   # GET /notes/1/edit
@@ -43,16 +51,6 @@ class NotesController < ApplicationController
   # POST /notes.json
   def create
     @note = Note.new(note_params)
-    @note.image_file_name = 'no_image.png' if @note.image_file_name == nil
-=begin
-    upload_file = note_params[:image_file_name]
-    content = {}
-    if upload_file != nil
-      content[:upload_file] = upload_file.read
-      content[:upload_file_name] = upload_file.original_filename
-      render plain: content[:upload_file_name]
-    end
-=end
     respond_to do |format|
       if @note.save
         format.html { redirect_to @note, notice: 'Note was successfully created.' }
@@ -92,7 +90,9 @@ class NotesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_note
       @note = Note.find(params[:id])
-      @note.image_file_name = 'no_image.png' if @note.image_file_name == nil
+      if @note.image_file_name.length == 0
+        @note.image_file_name = 'no_image.png'
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

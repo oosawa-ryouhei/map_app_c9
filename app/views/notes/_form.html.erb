@@ -1,93 +1,93 @@
 <div class="article">
-<h2>観察記録</h2>
-<%= form_for(@note, remote: true) do |f| %>
-  <% if @note.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@note.errors.count, "error") %> prohibited this note from being saved:</h2>
+  <h2>観察記録</h2>
+  <%= form_for(@note, remote: true) do |f| %>
+    <% if @note.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@note.errors.count, "error") %>個のエラーがあり保存できませんでした::</h2>
 
-      <ul>
-      <% @note.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <ul>
+        <% @note.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :event_name %>:
+      <%= f.text_field :event_name %>
+    </div>
+
+    <hr>
+
+    <div>
+      <div class="field" style="display: inline;">
+        <%= f.label :student_grade %>:
+        <%= f.number_field :student_grade %>
+      </div>
+
+      <div class="field" style="display: inline; margin-left: 1.5em;">
+        <%= f.label :student_class %>:
+        <%= f.number_field :student_class %>
+      </div>
+
+      <div class="field" style="display: inline; margin-left: 1.5em;">
+        <%= f.label :student_number %>:
+        <%= f.number_field :student_number %>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= f.label :student_name %>:
+      <%= f.text_field :student_name %>
+    </div>
+
+    <hr>
+
+    <div class="field">
+      <%= f.label :title %>:
+      <%= f.text_field :title, size: 40 %>
+    </div>
+
+    <div class="field">
+      <%= f.label :body %>:<br>
+      <%= f.text_area :body, { rows: 8 } %>
+    </div>
+
+    <div class="field">
+      <% if @note.image_file_name %>
+      <%= image_tag @note.image_file_name, width: 350 %><br>
       <% end %>
-      </ul>
+      <%= f.label :image_file_name %>:<br>
+      <%= f.text_field :image_file_name %>
+    </div>
+
+    <div calss="field">
+      <%= f.label :observed_at %>:<br>
+      <%= f.datetime_select :observed_at %>
+    </div>
+
+    <div calss="field">
+      <%= f.label :weather %>:
+      <%= f.text_field :weather %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :lat %>:
+      <%= f.text_field :lat, readonly: 'readonly' %>
+    </div>
+
+    <div class="field">
+      <%= f.label :lng %>:
+      <%= f.text_field :lng, readonly: 'readonly' %>
+    </div>
+
+    <hr>
+
+    <div class="actions">
+      <%= f.submit "保存する" %>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :event_name %>:
-    <%= f.text_field :event_name %>
-  </div>
-
-  <hr>
-
-  <div>
-    <div class="field" style="display: inline;">
-      <%= f.label :student_grade %>:
-      <%= f.number_field :student_grade %>
-    </div>
-
-    <div class="field" style="display: inline; margin-left: 1.5em;">
-      <%= f.label :student_class %>:
-      <%= f.number_field :student_class %>
-    </div>
-
-    <div class="field" style="display: inline; margin-left: 1.5em;">
-      <%= f.label :student_number %>:
-      <%= f.number_field :student_number %>
-    </div>
-  </div>
-
-  <div class="field">
-    <%= f.label :student_name %>:
-    <%= f.text_field :student_name %>
-  </div>
-
-  <hr>
-
-  <div class="field">
-    <%= f.label :title %>:
-    <%= f.text_field :title, size: 40 %>
-  </div>
-
-  <div class="field">
-    <%= f.label :body %>:<br>
-    <%= f.text_area :body, { rows: 8 } %>
-  </div>
-
-  <div class="field">
-    <% if @note.image_file_name %>
-    <%= image_tag @note.image_file_name, width: 350 %><br>
-    <% end %>
-    <%= f.label :image_file_name %>:<br>
-    <%= f.text_field :image_file_name %>
-    </div>
-
-  <div calss="field">
-    <%= f.label :observed_at %>:<br>
-    <%= f.datetime_select :observed_at %>
-  </div>
-
-  <div calss="field">
-    <%= f.label :weather %>:
-    <%= f.text_field :weather %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :lat %>:
-    <%= f.text_field :lat, readonly: 'readonly' %>
-  </div>
-
-  <div class="field">
-    <%= f.label :lng %>:
-    <%= f.text_field :lng, readonly: 'readonly' %>
-  </div>
-
-  <hr>
-
-  <div class="actions">
-    <%= f.submit "保存する" %>
-  </div>
-<% end %>
-
-<%= link_to "[とりやめ]", notes_path %>
+  <%= link_to "[とりやめ]", notes_path %>
 </div>

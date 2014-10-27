@@ -10,7 +10,7 @@
 require 'csv'
 
 # db/csvフォルダ中のデータファイル
-data_files = %w(24.csv 25.csv)
+data_files = %w()
 
 data_files.each do |data_file|
   # 1行目はヘッダーなので無視
@@ -38,4 +38,4 @@ data_files.each do |data_file|
   end
 end
 
-mode = Mode.create({name: 'view'})
+mode = Mode.create({name: 'view'}) unless Mode.first.present?
