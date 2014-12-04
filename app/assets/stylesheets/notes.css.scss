@@ -35,8 +35,16 @@
 }
 
 #header_logo,
+#header_form,
 #header_menu {
     height: 64px;
+}
+
+#footer_a {
+    float: right;
+    font-size: 25px;
+    background: #EEE;
+      
 }
 
 #header_logo {
@@ -46,7 +54,7 @@
         float: left;
         padding: 5px 0px 0px 0px;
         height: 59px;
-        font-size: 32px;
+        font-size: 36px;
         a {
             text-decoration: none;
             color: #eee;
@@ -57,10 +65,17 @@
     }
 }
 
+#header_form {
+    float: left;
+    width: 30px;
+    heght: 64px;
+
+}
+
+
 #header_menu {
     float: right;
     width: 500px;
-    //background: rgba(0, 0, 0, 0.5);
     ul {
         float: right;
         height: 64px;
@@ -69,6 +84,7 @@
         float: right;
         list-style: none;
         padding-top: 7px;
+        font-size: 24px;
         span,
         a {
             display: block;
@@ -171,7 +187,7 @@ body {
 
 
 #info {
-    font-size: 16px;
+    font-size: 20px;
     input[type="text"],
     input[type="number"],
     input[type="submit"],

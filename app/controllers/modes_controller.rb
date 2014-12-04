@@ -1,6 +1,6 @@
 class ModesController < ApplicationController
   http_basic_authenticate_with name: ENV['BASIC_AUTH_USERNAME'], password: ENV['BASIC_AUTH_PASSWORD'] if Rails.env == "production"
-  http_basic_authenticate_with name: 'teacher', password: 'secret' if Rails.env == "development"
+  http_basic_authenticate_with name: 'teacher', password: 'matsuyama' if Rails.env == "development"
 
   # GET /mode
   def index

@@ -13,7 +13,19 @@
 <div id="header">
   <div id="header_logo">
     <h1><%= link_to "尾駮沼の観察記録", root_path %></h1>
+
   </div>
+  <div id="header_form">
+  <p>
+	    <form name="test">
+		<select name="linkselect" onChange="kakunin()">
+		<option value="">選択して下さい</option>
+		<option value="">平成25年度</option>
+		<option value="">平成26年度</option>
+		</select>
+		</form>
+	</p>
+	</div>
   <div id="header_menu">
     <ul>
       <% if edit_mode? %>
@@ -31,6 +43,13 @@
   コンテンツ: 青森県六ヶ所村立尾駮小学校 / 〒039-3212 青森県六ヶ所村大字尾駮字野附968 / TEL 0175-72-2016
   <br>
   システム: 青森大学ソフトウェア情報学部 / 〒030-0943 青森県青森市幸畑2-3-1 / TEL 017-738-2001
+  <div id="footer_a">
+   <% if edit_mode? %>
+        <li><%= link_to "モード変更", modes_path, { class: Mode.first.name } %></li>
+      <% else %>
+        <li><%= link_to "モード変更", modes_path, { class: Mode.first.name } %></li>
+      <% end %>
+  </div>
 </div>
 </body>
 </html>
